@@ -1,6 +1,8 @@
 <template>
+
+
   <CRow>
-    <CCol sm="6" lg="3">
+    <CCol sm="6" lg="4">
        <CButton class="float-right"><CWidgetDropdown class="head" color="primary" header="" text="Number of Sensors : 3">
         
         <template #footer>
@@ -17,7 +19,7 @@
       </CWidgetDropdown>
       </CButton>
     </CCol>
-    <CCol sm="6" lg="3">
+    <CCol sm="6" lg="4">
      <CButton class="float-right"> <CWidgetDropdown class="head" color="info" header=" " text="Temperature Sensor Data"> 
       
          <template #footer>
@@ -34,7 +36,7 @@
       </CWidgetDropdown>
       </CButton>
     </CCol>
-    <CCol sm="6" lg="3">
+    <CCol sm="6" lg="4">
        <CButton class="float-right"><CWidgetDropdown class="head" color="warning" header="" text="Humidity Sensor Data">
        
           <template #footer>
@@ -51,7 +53,7 @@
       </CWidgetDropdown>
       </CButton>
     </CCol>
-    <CCol sm="6" lg="3">
+    <CCol sm="6" lg="4">
       <CButton class="float-right"> <CWidgetDropdown class="head" color="danger" header="" text="Pressure Sensor Data">
         
           <template #footer>
