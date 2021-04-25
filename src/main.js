@@ -1,30 +1,22 @@
+import 'core-js/stable'
 import Vue from 'vue'
-import App from './App.vue'
-import VueRouter from 'vue-router'
-import Home from './components/Home.vue'
-import About from './components/About.vue'
-import LogIn from "./components/LogIn.vue"
-import Register from "./components/Register.vue"
-import Navbar from "./components/Navbar.vue"
+import App from './App'
+import router from './router'
+import CoreuiVue from '@coreui/vue'
+import { iconsSet as icons } from './assets/icons/icons.js'
+import store from './store'
 
-Vue.use(VueRouter);
-Vue.component('monitor-nav', Navbar);
-
-// eslint-disable-next-line no-unused-vars
-const routes = [
-  {path: '/',component:Home},
-  {path: '/about', component: About},
-  {path: '/login', component: LogIn},
-  {path: '/register', component: Register}
-]
-
-const router = new VueRouter({
-  routes
-});
-
-Vue.config.productionTip = false
+Vue.config.performance = true
+Vue.use(CoreuiVue)
+Vue.prototype.$log = console.log.bind(console)
 
 new Vue({
-  render: h => h(App),
+  el: '#app',
   router,
-}).$mount('#app')
+  store,
+  icons,
+  template: '<App/>',
+  components: {
+    App
+  }
+})
