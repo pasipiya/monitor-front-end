@@ -27,11 +27,11 @@ export default {
 
   methods:{
     getSensorData(){
-      api=""
-      Vue.axios.get(api).then((response) => {
-      console.log(response.data)
-      console.log("Test")
-      })
+      //api="test"
+      // Vue.axios.get(api).then((response) => {
+      // console.log(response.data)
+      // console.log("Test")
+      // })
     }
 
   },
