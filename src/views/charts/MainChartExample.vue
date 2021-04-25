@@ -2,7 +2,8 @@
   <CChartLine
     :datasets="defaultDatasets"
     :options="defaultOptions"
-    :labels="['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su']"
+    :labels="lables"
+   
   />
 </template>
 
@@ -18,7 +19,11 @@ export default {
   name: 'MainChartExample',
   data(){
     return {
-      data1:[],
+      host:"http://localhost:8080",
+      data:[],
+      sensorDataValue:[],
+      lables:[],
+
     }
   },
   components: {
@@ -32,6 +37,22 @@ export default {
       // console.log(response.data)
       // console.log("Test")
       // })
+       let uri=this.host+"/sensor-data/10/2"
+       //let uri="http://localhost:8080/test"
+       this.$axios.get(uri).then((response) => {
+          this.data=[]
+          this.lables=[]
+          this.sensorDataValue=[]
+        //this.userData = response.data;
+        this.data=response.data
+        
+          for(var i=0;i<this.data.length;i++){
+            this.lables.push(this.data[i].date)
+            this.sensorDataValue.push(this.data[i].dataValue)
+          }
+        //console.log(this.data1);
+        //return this.vehicleData;
+      });
     }
 
   },
@@ -47,11 +68,11 @@ export default {
       // const data2 = []
       // const data3 = []
 
-      for (let i = 0; i <= elements; i++) {
-        this.data1.push(random(50, 200))
-        //data2.push(random(80, 100))
-        //data3.push(65)
-      }
+      // for (let i = 0; i <= elements; i++) {
+      //   this.data1.push(random(50, 200))
+      //   //data2.push(random(80, 100))
+      //   //data3.push(65)
+      // }
      
       return [
         {
@@ -60,7 +81,7 @@ export default {
           borderColor: brandInfo,
           pointHoverBackgroundColor: brandInfo,
           borderWidth: 2,
-          data: this.data1
+          data: this.sensorDataValue
         },
         // {
         //   label: 'My Second dataset',
@@ -118,7 +139,8 @@ export default {
     }
   },
   created(){
-      this.getSensorData()
+      //this.getSensorData()
+      this.obj = setInterval(() => this.getSensorData(), 3000);
      
   },
 

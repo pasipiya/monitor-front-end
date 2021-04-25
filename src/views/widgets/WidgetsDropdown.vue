@@ -1,7 +1,7 @@
 <template>
   <CRow>
     <CCol sm="6" lg="3">
-       <CButton class="float-right"><CWidgetDropdown class="head" color="primary" header="3" text="Number of Sensors">
+       <CButton class="float-right"><CWidgetDropdown class="head" color="primary" header="" text="Number of Sensors : 3">
         
         <template #footer>
           <CChartLineSimple
