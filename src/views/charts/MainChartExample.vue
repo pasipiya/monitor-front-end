@@ -16,25 +16,43 @@ function random (min, max) {
 
 export default {
   name: 'MainChartExample',
+  data(){
+    return {
+      data1:[],
+    }
+  },
   components: {
     CChartLine
   },
+
+  methods:{
+    getSensorData(){
+      api=""
+      Vue.axios.get(api).then((response) => {
+      console.log(response.data)
+      console.log("Test")
+      })
+    }
+
+  },
   computed: {
+
     defaultDatasets () {
       const brandSuccess = getStyle('success2') || '#4dbd74'
       const brandInfo = getStyle('info') || '#20a8d8'
       const brandDanger = getStyle('danger') || '#f86c6b'
 
       let elements = 27
-      const data1 = []
-      const data2 = []
-      const data3 = []
+      // const data1 = []
+      // const data2 = []
+      // const data3 = []
 
       for (let i = 0; i <= elements; i++) {
-        data1.push(random(50, 200))
-        data2.push(random(80, 100))
-        data3.push(65)
+        this.data1.push(random(50, 200))
+        //data2.push(random(80, 100))
+        //data3.push(65)
       }
+     
       return [
         {
           label: 'My First dataset',
@@ -42,25 +60,25 @@ export default {
           borderColor: brandInfo,
           pointHoverBackgroundColor: brandInfo,
           borderWidth: 2,
-          data: data1
+          data: this.data1
         },
-        {
-          label: 'My Second dataset',
-          backgroundColor: 'transparent',
-          borderColor: brandSuccess,
-          pointHoverBackgroundColor: brandSuccess,
-          borderWidth: 2,
-          data: data2
-        },
-        {
-          label: 'My Third dataset',
-          backgroundColor: 'transparent',
-          borderColor: brandDanger,
-          pointHoverBackgroundColor: brandDanger,
-          borderWidth: 1,
-          borderDash: [8, 5],
-          data: data3
-        }
+        // {
+        //   label: 'My Second dataset',
+        //   backgroundColor: 'transparent',
+        //   borderColor: brandSuccess,
+        //   pointHoverBackgroundColor: brandSuccess,
+        //   borderWidth: 2,
+        //   data: data2
+        // },
+        // {
+        //   label: 'My Third dataset',
+        //   backgroundColor: 'transparent',
+        //   borderColor: brandDanger,
+        //   pointHoverBackgroundColor: brandDanger,
+        //   borderWidth: 1,
+        //   borderDash: [8, 5],
+        //   data: data3
+        // }
       ]
     },
     defaultOptions () {
@@ -98,6 +116,11 @@ export default {
         }
       }
     }
-  }
+  },
+  created(){
+      this.getSensorData()
+     
+  },
+
 }
 </script>
